@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="MainPageView"
+             x:Class="SwipeGesture.MainPage">
+
+    <Grid RowDefinitions="110,40,*">
+
+        <Image
+            Grid.Row="0"
+            Source="dotnet_bot.png"
+            HeightRequest="185"
+            Aspect="AspectFit"
+            SemanticProperties.Description="dot net bot in a race car number eight" />
+
+        <Grid Grid.Row="2">
+            <ScrollView >
+                <VerticalStackLayout
+                            BindingContext="{x:Reference MainPageView}"
+                            BindableLayout.ItemsSource="{Binding Items}"
+                            Padding="30,0"
+                            Spacing="25">
+
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate >
+                            <Grid>
+                                <Grid.GestureRecognizers>
+                                    <SwipeGestureRecognizer Direction="Left" Swiped="SwipeGestureRecognizer_Swiped" Threshold="30" />
+                                    <SwipeGestureRecognizer Direction="Right" Swiped="SwipeGestureRecognizer_Swiped" Threshold="30"/>
+                                </Grid.GestureRecognizers>
+                                
+                                <Label Text="{Binding .}" FontSize="Large"/>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+    </Grid>
+
+</ContentPage>
